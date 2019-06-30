@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://textures/black.png" type="Texture" id=1]
+[ext_resource path="res://objects/Planetoid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/Astronaut.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=1]
+
+[node name="AnotherSpace" type="WorldEnvironment"]
+environment = SubResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -896.32
+margin_top = -390.08
+margin_right = 688.68
+margin_bottom = 436.92
+texture = ExtResource( 1 )
+stretch_mode = 1
+
+[node name="Planetoid" parent="." instance=ExtResource( 2 )]
+position = Vector2( -200.554, 140.72 )
+
+[node name="Astronaut" parent="." instance=ExtResource( 3 )]
+position = Vector2( -203.584, 51.8946 )
+

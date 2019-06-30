@@ -6,7 +6,7 @@
 radius = 64.8463
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 90.9273
+radius = 143.039
 
 [node name="Asteroid" type="StaticBody2D"]
 constant_linear_velocity = Vector2( 1, 1 )
@@ -15,14 +15,14 @@ constant_angular_velocity = 1.0
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Ground" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="GravityField" type="Area2D" parent="."]
 space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="FieldCollision" type="CollisionShape2D" parent="GravityField"]
 shape = SubResource( 2 )
 
