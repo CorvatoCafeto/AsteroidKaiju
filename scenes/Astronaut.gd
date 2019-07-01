@@ -7,8 +7,8 @@ var direction = 1
 var speed = Vector2()
 var velocity = Vector2()
 
-const MAX_SPEED = 100#100000
-const JUMP_FORCE = 200#70000
+const MAX_SPEED = 10000
+const JUMP_FORCE = 7000
 
 func _ready():
 	set_physics_process(true)
@@ -23,12 +23,11 @@ func _physics_process(delta):
 		
 	applyMovement(delta)
 	applyGravity(delta)
-	#applyJump(delta)
+	applyJump(delta)
 	
 	var playerRot = get_player_rotation()
 	
-	#velocity = Vector2(speed.x * delta, speed.y * delta)
-	velocity = Vector2(speed.x, speed.y)
+	velocity = Vector2(speed.x * delta, speed.y * delta)
 	velocity = velocity.rotated(playerRot)
 	
 	move_and_slide(velocity)

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 64.5372
 
-[node name="Planetoid" type="Area2D" groups=[
+[node name="Planetoid" type="StaticBody2D" groups=[
 "Planet",
 ]]
 script = ExtResource( 1 )

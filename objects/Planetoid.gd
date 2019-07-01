@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 export (Color) var atmosphere = Color(.37, .62, .9, .15)
 
