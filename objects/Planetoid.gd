@@ -2,10 +2,10 @@ extends Area2D
 
 export (Color) var atmosphere = Color(.37, .62, .9, .15)
 
-const GRAVITY = 4000
+const GRAVITY = 200#4000
 
 onready var gravityCenter = get_node("GravityCenter")
-var gravityEffectField = GRAVITY / 12
+var gravityEffectField = GRAVITY
 
 func _ready():
 	update()

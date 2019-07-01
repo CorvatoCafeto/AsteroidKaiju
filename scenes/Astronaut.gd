@@ -7,8 +7,8 @@ var direction = 1
 var speed = Vector2()
 var velocity = Vector2()
 
-const MAX_SPEED = 100000
-const JUMP_FORCE = 70000
+const MAX_SPEED = 100#100000
+const JUMP_FORCE = 200#70000
 
 func _ready():
 	set_physics_process(true)
@@ -23,15 +23,16 @@ func _physics_process(delta):
 		
 	applyMovement(delta)
 	applyGravity(delta)
-	applyJump(delta)
+	#applyJump(delta)
 	
-	#var playerRot = get_player_rotation()
+	var playerRot = get_player_rotation()
 	
-	velocity = Vector2(speed.x * delta, speed.y * delta)
-	#velocity = velocity.rotated(playerRot)
+	#velocity = Vector2(speed.x * delta, speed.y * delta)
+	velocity = Vector2(speed.x, speed.y)
+	velocity = velocity.rotated(playerRot)
 	
-	#move_and_slide(velocity)
-	#set_rotation(playerRot)
+	move_and_slide(velocity)
+	set_rotation(playerRot)
 	
 func applyMovement(delta):
 	#Moving options
@@ -44,8 +45,7 @@ func applyMovement(delta):
 	elif (abs(speed.x) > 0 && abs(speed.x)<20):
 		speed.x = 0
 	elif(abs(speed.x) > 0):
-		pass
-		#speed.x += MAX_SPEED * delta * direction * -1
+		speed.x += MAX_SPEED * delta * direction * -1
 		
 	speed.x = clamp(speed.x, -MAX_SPEED, MAX_SPEED)
 	
@@ -66,10 +66,10 @@ func get_player_rotation():
 	if(closestPlanet):
 		return downVector.angle_to(get_gravity_vector(closestPlanet))
 	else:
-		return rotation#get_rotation()
+		return rotation
 		
 func get_gravity_vector(planet):
-	return (planet.gravityCenter.global_position - global_position.normalized())
+	return (planet.gravityCenter.global_position - global_position).normalized()
 	
 func get_closest_planet():
 	var distance = -1
