@@ -13,6 +13,8 @@ const JUMP_FORCE = 7000
 func _ready():
 	set_physics_process(true)
 	closestPlanet = get_closest_planet()
+	$AnimationPlayer.current_animation = "Idle"
+	$AnimationPlayer.play()
 	
 func _physics_process(delta):
 	
@@ -55,6 +57,7 @@ func applyGravity(delta):
 func applyJump(delta):
 	if Input.is_action_pressed("ui_up"):
 		speed.y = -JUMP_FORCE
+		$AnimationPlayer.current_animation = "Jump"
 	else:
 		speed.y += JUMP_FORCE * delta
 		
@@ -84,3 +87,7 @@ func get_closest_planet():
 				distance = planet.gravityCenter.global_position.distance_to(global_position)
 				
 	return foundPlanet
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Jump":
+		$AnimationPlayer.current_animation = "Idle"

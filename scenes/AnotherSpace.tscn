@@ -1,25 +1,104 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://textures/black.png" type="Texture" id=1]
-[ext_resource path="res://objects/Planetoid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Astronaut.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/Planetoid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Astronaut.tscn" type="PackedScene" id=2]
+[ext_resource path="res://textures/black_sky.png" type="Texture" id=3]
+[ext_resource path="res://textures/red_sun.png" type="Texture" id=4]
+[ext_resource path="res://themes/Retro.tres" type="Theme" id=5]
+[ext_resource path="res://textures/heart.png" type="Texture" id=6]
+[ext_resource path="res://textures/gear.png" type="Texture" id=7]
+[ext_resource path="res://music/GameLoop.wav" type="AudioStream" id=8]
 
 [sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_strength = 1.2
+glow_bloom = 0.1
+glow_blend_mode = 0
+glow_bicubic_upscale = true
 
 [node name="AnotherSpace" type="WorldEnvironment"]
 environment = SubResource( 1 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -896.32
-margin_top = -390.08
-margin_right = 688.68
-margin_bottom = 436.92
-texture = ExtResource( 1 )
-stretch_mode = 1
-
-[node name="Planetoid" parent="." instance=ExtResource( 2 )]
+[node name="Planetoid" parent="." instance=ExtResource( 1 )]
 position = Vector2( -200.554, 140.72 )
 
-[node name="Astronaut" parent="." instance=ExtResource( 3 )]
+[node name="Planetoid2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 140.256, -107.012 )
+
+[node name="Astronaut" parent="." instance=ExtResource( 2 )]
 position = Vector2( -203.584, 51.8946 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="StarsLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+motion_mirroring = Vector2( 1, 1 )
+
+[node name="StarsTexture" type="TextureRect" parent="Background/ParallaxBackground/StarsLayer"]
+margin_right = 970.0
+margin_bottom = 550.0
+texture = ExtResource( 3 )
+
+[node name="SunLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_scale = Vector2( 0.25, 0.25 )
+
+[node name="SunTexture" type="Sprite" parent="Background/ParallaxBackground/SunLayer"]
+texture = ExtResource( 4 )
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+editor/display_folded = true
+
+[node name="Control" type="Control" parent="UserInterface"]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 5 )
+
+[node name="HealthPanel" type="Panel" parent="UserInterface/Control"]
+margin_left = 30.0
+margin_top = 480.0
+margin_right = 100.0
+margin_bottom = 510.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Percentage" type="Label" parent="UserInterface/Control/HealthPanel"]
+margin_left = 28.9279
+margin_top = 8.00003
+margin_right = 60.9279
+margin_bottom = 24.0
+text = "100%"
+
+[node name="HeartTexture" type="Sprite" parent="UserInterface/Control/HealthPanel"]
+position = Vector2( 15.1931, 14.8601 )
+texture = ExtResource( 6 )
+
+[node name="GearsPanel" type="Panel" parent="UserInterface/Control"]
+margin_left = 860.0
+margin_top = 480.0
+margin_right = 930.0
+margin_bottom = 510.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Quantity" type="Label" parent="UserInterface/Control/GearsPanel"]
+margin_left = 12.5172
+margin_top = 8.12213
+margin_right = 36.5172
+margin_bottom = 24.1221
+text = "0/4"
+
+[node name="GearTexture" type="Sprite" parent="UserInterface/Control/GearsPanel"]
+position = Vector2( 51.1199, 15.3998 )
+texture = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0
+autoplay = true
 

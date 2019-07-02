@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Kaiju.gd" type="Script" id=1]
-[ext_resource path="res://textures/astronaut.png" type="Texture" id=2]
+[ext_resource path="res://textures/astronaut_rolling.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.14484
@@ -19,7 +19,6 @@ texture = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
 default_color = Color( 0.4, 0.501961, 1, 1 )
-texture_mode = 2132311292
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

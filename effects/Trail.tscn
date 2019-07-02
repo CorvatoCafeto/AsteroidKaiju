@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/JumpTrail.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 0.7251, 0, 0, 1, 0.679688, 0, 1 )
+
+[node name="TrailRoot" type="Node"]
+
+[node name="JumpTrail" type="Line2D" parent="."]
+z_index = -1
+default_color = Color( 0.792157, 0.203922, 0.0901961, 1 )
+gradient = SubResource( 4 )
+texture_mode = 38
+script = ExtResource( 1 )
+targetPath = NodePath("../..")
+trailLength = 25
+

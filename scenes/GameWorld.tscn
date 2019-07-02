@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://objects/Asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Kaiju.tscn" type="PackedScene" id=2]
-[ext_resource path="res://textures/astronaut.png" type="Texture" id=3]
-
-[sub_resource type="CapsuleShape2D" id=1]
-height = 8.02931
 
 [node name="GameWorld" type="Node2D"]
 
@@ -25,18 +21,4 @@ position = Vector2( 19.847, -119.978 )
 
 [node name="CurrentCamera" type="Camera2D" parent="."]
 current = true
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( -17.0456, -120.135 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-modulate = Color( 0.803922, 0.894118, 0.290196, 1 )
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 0, 1.83518 )
-shape = SubResource( 1 )
 
