@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gear_pickup.wav-d15b7ac78c31a99b8c510d1723549741.sample"
+
+[deps]
+
+source_file="res://sounds/gear_pickup.wav"
+dest_files=[ "res://.import/gear_pickup.wav-d15b7ac78c31a99b8c510d1723549741.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

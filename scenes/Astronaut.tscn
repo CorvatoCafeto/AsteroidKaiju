@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Astronaut.gd" type="Script" id=1]
 [ext_resource path="res://textures/astronaut_jump.png" type="Texture" id=2]
@@ -9,7 +9,47 @@
 height = 7.51285
 
 [sub_resource type="Animation" id=2]
-resource_name = "Idle"
+resource_name = "Hit"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position2D/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.701961, 0.215686, 0.215686, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D/Sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -61,8 +101,7 @@ tracks/3/keys = {
 "values": [ ExtResource( 3 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Jump"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Position2D/Sprite:texture")
 tracks/0/interp = 1
@@ -112,7 +151,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 0.980685 ), Vector2( 1, 1.13907 ) ]
 }
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 1, 0.7251, 0, 0, 1, 0.679688, 0, 1 )
 
 [node name="Astronaut" type="KinematicBody2D"]
@@ -122,6 +161,8 @@ script = ExtResource( 1 )
 position = Vector2( 0.198879, 15.0155 )
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
+visible = false
+modulate = Color( 0.701961, 0.215686, 0.215686, 1 )
 position = Vector2( -0.198879, -17.2407 )
 scale = Vector2( 1, 1.13907 )
 texture = ExtResource( 2 )
@@ -134,15 +175,16 @@ shape = SubResource( 1 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 3 )
+anims/Hit = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
 
 [node name="TrailRoot" type="Node" parent="."]
 
 [node name="JumpTrail" type="Line2D" parent="TrailRoot"]
 z_index = -1
 default_color = Color( 0.792157, 0.203922, 0.0901961, 1 )
-gradient = SubResource( 4 )
+gradient = SubResource( 5 )
 texture_mode = 38
 script = ExtResource( 4 )
 targetPath = NodePath("../..")
