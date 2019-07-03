@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Astronaut
+
 var closestPlanet
 
 var direction = 1
@@ -26,6 +28,7 @@ func _physics_process(delta):
 	applyMovement(delta)
 	applyGravity(delta)
 	applyJump(delta)
+	checkHit()
 	
 	var playerRot = get_player_rotation()
 	
@@ -34,6 +37,14 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 	set_rotation(playerRot)
+
+func checkHit():
+	if Globals.hit == true:
+		$AnimationPlayer.current_animation = "Hit"
+		Globals.hit = false
+	if Globals.astronaut_health <= 0:
+		self.queue_free()
+		
 	
 func applyMovement(delta):
 	#Moving options
@@ -89,5 +100,5 @@ func get_closest_planet():
 	return foundPlanet
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "Jump":
+	if anim_name == "Jump" or anim_name == "Hit":
 		$AnimationPlayer.current_animation = "Idle"
