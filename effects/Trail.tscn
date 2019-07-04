@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/JumpTrail.gd" type="Script" id=1]
+[ext_resource path="res://effects/JumpTrail.gd" type="Script" id=1]
+
 
 [sub_resource type="Gradient" id=4]
 colors = PoolColorArray( 1, 0.7251, 0, 0, 1, 0.679688, 0, 1 )

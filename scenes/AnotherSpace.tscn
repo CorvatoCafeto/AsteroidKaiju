@@ -1,18 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Astronaut.tscn" type="PackedScene" id=1]
-[ext_resource path="res://textures/black_sky.png" type="Texture" id=2]
-[ext_resource path="res://textures/red_sun.png" type="Texture" id=3]
-[ext_resource path="res://scenes/UserInterface.gd" type="Script" id=4]
-[ext_resource path="res://themes/Retro.tres" type="Theme" id=5]
-[ext_resource path="res://textures/heart.png" type="Texture" id=6]
-[ext_resource path="res://textures/gear.png" type="Texture" id=7]
-[ext_resource path="res://music/GameLoop.wav" type="AudioStream" id=8]
-[ext_resource path="res://objects/Gear.tscn" type="PackedScene" id=9]
-[ext_resource path="res://objects/Debris.tscn" type="PackedScene" id=10]
-[ext_resource path="res://objects/StaticPlatform.tscn" type="PackedScene" id=11]
-[ext_resource path="res://objects/Planetoid.tscn" type="PackedScene" id=12]
-[ext_resource path="res://textures/spaceship.png" type="Texture" id=13]
+[ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/UserInterface.tscn" type="PackedScene" id=3]
+[ext_resource path="res://music/GameLoop.wav" type="AudioStream" id=4]
+[ext_resource path="res://objects/Gear.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/Debris.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/StaticPlatform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/Planetoid.tscn" type="PackedScene" id=8]
+[ext_resource path="res://textures/spaceship.png" type="Texture" id=9]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -28,139 +24,76 @@ environment = SubResource( 1 )
 [node name="Astronaut" parent="." instance=ExtResource( 1 )]
 position = Vector2( -203.584, 51.8946 )
 
-[node name="Background" type="CanvasLayer" parent="."]
-editor/display_folded = true
+[node name="Background" parent="." instance=ExtResource( 2 )]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
-
-[node name="StarsLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2( 0.5, 0.5 )
-motion_mirroring = Vector2( 1, 1 )
-
-[node name="StarsTexture" type="TextureRect" parent="Background/ParallaxBackground/StarsLayer"]
-margin_right = 970.0
-margin_bottom = 550.0
-texture = ExtResource( 2 )
-
-[node name="SunLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2( 0.25, 0.25 )
-
-[node name="SunTexture" type="Sprite" parent="Background/ParallaxBackground/SunLayer"]
-texture = ExtResource( 3 )
-
-[node name="UserInterface" type="CanvasLayer" parent="."]
-script = ExtResource( 4 )
-
-[node name="Control" type="Control" parent="UserInterface"]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 5 )
-
-[node name="HealthPanel" type="Panel" parent="UserInterface/Control"]
-margin_left = 30.0
-margin_top = 480.0
-margin_right = 100.0
-margin_bottom = 510.0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Percentage" type="Label" parent="UserInterface/Control/HealthPanel"]
-margin_left = 28.9279
-margin_top = 8.00003
-margin_right = 60.9279
-margin_bottom = 24.0
-text = "100%"
-
-[node name="HeartTexture" type="Sprite" parent="UserInterface/Control/HealthPanel"]
-position = Vector2( 15.1931, 14.8601 )
-texture = ExtResource( 6 )
-
-[node name="GearsPanel" type="Panel" parent="UserInterface/Control"]
-margin_left = 860.0
-margin_top = 480.0
-margin_right = 930.0
-margin_bottom = 510.0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Quantity" type="Label" parent="UserInterface/Control/GearsPanel"]
-margin_left = 12.5172
-margin_top = 8.12213
-margin_right = 36.5172
-margin_bottom = 24.1221
-text = "0/4"
-
-[node name="GearTexture" type="Sprite" parent="UserInterface/Control/GearsPanel"]
-position = Vector2( 51.1199, 15.3998 )
-texture = ExtResource( 7 )
+[node name="UserInterface" parent="." instance=ExtResource( 3 )]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 4 )
 volume_db = -5.0
 autoplay = true
 
 [node name="Gears" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="Gear" parent="Gears" instance=ExtResource( 9 )]
+[node name="Gear" parent="Gears" instance=ExtResource( 5 )]
 position = Vector2( -732.34, -230.489 )
 
-[node name="Gear2" parent="Gears" instance=ExtResource( 9 )]
+[node name="Gear2" parent="Gears" instance=ExtResource( 5 )]
 position = Vector2( 232.9, -217.547 )
 
 [node name="Debris" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="Debris" parent="Debris" instance=ExtResource( 10 )]
+[node name="Debris" parent="Debris" instance=ExtResource( 6 )]
 position = Vector2( -178.454, -138.017 )
 
-[node name="Debris2" parent="Debris" instance=ExtResource( 10 )]
+[node name="Debris2" parent="Debris" instance=ExtResource( 6 )]
 position = Vector2( -38.1675, -3.2612 )
 
-[node name="Debris3" parent="Debris" instance=ExtResource( 10 )]
+[node name="Debris3" parent="Debris" instance=ExtResource( 6 )]
 position = Vector2( 85.2099, 15.4912 )
 
-[node name="Debris4" parent="Debris" instance=ExtResource( 10 )]
+[node name="Debris4" parent="Debris" instance=ExtResource( 6 )]
 position = Vector2( 65.3182, -261.514 )
 
-[node name="Debris5" parent="Debris" instance=ExtResource( 10 )]
+[node name="Debris5" parent="Debris" instance=ExtResource( 6 )]
 position = Vector2( -738.393, -81.2374 )
 
 [node name="StaticPlatorms" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="StaticPlatform" parent="StaticPlatorms" instance=ExtResource( 11 )]
+[node name="StaticPlatform" parent="StaticPlatorms" instance=ExtResource( 7 )]
 position = Vector2( -446.62, 51.495 )
 rotation = 2.17485
 
-[node name="StaticPlatform2" parent="StaticPlatorms" instance=ExtResource( 11 )]
+[node name="StaticPlatform2" parent="StaticPlatorms" instance=ExtResource( 7 )]
 position = Vector2( -610.278, 52.5374 )
 rotation = 2.47728
 
-[node name="StaticPlatform3" parent="StaticPlatorms" instance=ExtResource( 11 )]
+[node name="StaticPlatform3" parent="StaticPlatorms" instance=ExtResource( 7 )]
 position = Vector2( -557.115, -134.054 )
 rotation = 3.93765
 
-[node name="StaticPlatform4" parent="StaticPlatorms" instance=ExtResource( 11 )]
+[node name="StaticPlatform4" parent="StaticPlatorms" instance=ExtResource( 7 )]
 position = Vector2( -716.604, -187.217 )
 rotation = 2.47728
 
 [node name="Planetoids" type="Node" parent="."]
+editor/display_folded = true
 
-[node name="Planetoid" parent="Planetoids" instance=ExtResource( 12 )]
+[node name="Planetoid" parent="Planetoids" instance=ExtResource( 8 )]
 position = Vector2( -197.554, 207.72 )
 
-[node name="Planetoid2" parent="Planetoids" instance=ExtResource( 12 )]
+[node name="Planetoid2" parent="Planetoids" instance=ExtResource( 8 )]
 position = Vector2( 140.256, -107.012 )
 
-[node name="Planetoid3" parent="Planetoids" instance=ExtResource( 12 )]
+[node name="Planetoid3" parent="Planetoids" instance=ExtResource( 8 )]
 position = Vector2( -213.501, 855.631 )
 
 [node name="Spaceship" type="Sprite" parent="."]
 position = Vector2( -319.95, 917.892 )
 rotation = -2.09428
 z_index = -1
-texture = ExtResource( 13 )
+texture = ExtResource( 9 )
 

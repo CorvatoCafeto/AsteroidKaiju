@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Red Sun"
-run/main_scene="res://scenes/TitleSreen.tscn"
+run/main_scene="res://interface/TitleSreen.tscn"
 boot_splash/image="res://textures/black.png"
 boot_splash/bg_color=Color( 0.0980392, 0.0666667, 0.137255, 1 )
 config/icon="res://icon.png"
@@ -50,4 +50,4 @@ window/stretch/aspect="keep"
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://resources/default_env.tres"

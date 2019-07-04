@@ -3,6 +3,9 @@
 [ext_resource path="res://scenes/Kaiju.gd" type="Script" id=1]
 [ext_resource path="res://textures/astronaut_rolling.png" type="Texture" id=2]
 
+
+
+
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.14484
 height = 12.2349
