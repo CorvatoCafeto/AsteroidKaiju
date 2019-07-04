@@ -23,7 +23,8 @@ margin_left = -56.0
 margin_top = 100.0
 margin_right = 56.0
 margin_bottom = 35.0
-text = "Asteroid Kaiju
+custom_colors/font_color = Color( 0.670588, 0.0235294, 0.0235294, 1 )
+text = "Red * Sun
 "
 align = 1
 valign = 1

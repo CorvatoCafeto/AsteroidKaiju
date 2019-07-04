@@ -6,6 +6,8 @@ var closestPlanet
 
 var direction = 1
 
+var can_move = true
+
 var speed = Vector2()
 var velocity = Vector2()
 
@@ -51,14 +53,26 @@ func applyMovement(delta):
 	if Input.is_action_pressed("ui_left"):
 		direction = -1
 		speed.x = MAX_SPEED * direction
+		if can_move:
+			$AnimationPlayer.current_animation = "Move"
+			can_move = false
 	elif Input.is_action_pressed("ui_right"):
 		direction = 1
 		speed.x = MAX_SPEED * direction
+		if can_move:
+			$AnimationPlayer.current_animation = "Move"
+			can_move = false
 	elif (abs(speed.x) > 0 && abs(speed.x)<20):
 		speed.x = 0
+		$AnimationPlayer.current_animation = "Idle"
 	elif(abs(speed.x) > 0):
 		speed.x += MAX_SPEED * delta * direction * -1
 		
+	if Input.is_action_just_released("ui_left"):
+		can_move = true
+	if Input.is_action_just_released("ui_right"):
+		can_move = true
+	
 	speed.x = clamp(speed.x, -MAX_SPEED, MAX_SPEED)
 	
 func applyGravity(delta):

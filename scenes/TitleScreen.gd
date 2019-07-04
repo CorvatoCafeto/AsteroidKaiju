@@ -6,7 +6,7 @@ func _ready():
 	OS.window_fullscreen = false
 
 func _on_StartButton_pressed():
-	scene_control = get_tree().change_scene("res://scenes/GameWorld.tscn")
+	scene_control = get_tree().change_scene("res://scenes/AnotherSpace.tscn")
 	
 
 func _on_FullscreenButton_pressed():

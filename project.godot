@@ -26,7 +26,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Asteroid Kaiju"
+config/name="Red Sun"
 run/main_scene="res://scenes/TitleSreen.tscn"
 boot_splash/image="res://textures/black.png"
 boot_splash/bg_color=Color( 0.0980392, 0.0666667, 0.137255, 1 )
