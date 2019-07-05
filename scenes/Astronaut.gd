@@ -26,26 +26,27 @@ func _physics_process(delta):
 	
 	if(nextPlanet != closestPlanet && nextPlanet.is_in_gravity_field(global_position)):
 		closestPlanet = nextPlanet
+	
+	if Globals.death == false:	
+		applyMovement(delta)
+		applyGravity(delta)
+		applyJump(delta)
+		checkHit()
 		
-	applyMovement(delta)
-	applyGravity(delta)
-	applyJump(delta)
-	checkHit()
-	
-	var playerRot = get_player_rotation()
-	
-	velocity = Vector2(speed.x * delta, speed.y * delta)
-	velocity = velocity.rotated(playerRot)
-	
-	move_and_slide(velocity)
-	set_rotation(playerRot)
+		var playerRot = get_player_rotation()
+		
+		velocity = Vector2(speed.x * delta, speed.y * delta)
+		velocity = velocity.rotated(playerRot)
+		
+		move_and_slide(velocity)
+		set_rotation(playerRot)
 
 func checkHit():
 	if Globals.hit == true:
 		$AnimationPlayer.current_animation = "Hit"
 		Globals.hit = false
 	if Globals.astronaut_health <= 0:
-		self.queue_free()
+		Globals.death = true
 		
 	
 func applyMovement(delta):
@@ -73,6 +74,9 @@ func applyMovement(delta):
 	if Input.is_action_just_released("ui_right"):
 		can_move = true
 	
+	if $RechargeRaycast.is_colliding():
+		Globals.jetpack_fuel = 100
+	
 	speed.x = clamp(speed.x, -MAX_SPEED, MAX_SPEED)
 	
 func applyGravity(delta):
@@ -81,8 +85,10 @@ func applyGravity(delta):
 		
 func applyJump(delta):
 	if Input.is_action_pressed("ui_up"):
-		speed.y = -JUMP_FORCE
-		$AnimationPlayer.current_animation = "Jump"
+		if(Globals.jetpack_fuel >= Globals.jetpack_step):
+			speed.y = -JUMP_FORCE
+			$AnimationPlayer.current_animation = "Jump"
+			Globals.jetpack_fuel -= Globals.jetpack_step
 	else:
 		speed.y += JUMP_FORCE * delta
 		

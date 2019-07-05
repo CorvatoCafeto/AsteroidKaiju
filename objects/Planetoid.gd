@@ -2,7 +2,8 @@ extends StaticBody2D
 
 export (Color) var atmosphere = Color(.37, .62, .9, .15)
 
-const GRAVITY = 200#4000
+#const GRAVITY = 200
+export var GRAVITY = 200
 
 onready var gravityCenter = get_node("GravityCenter")
 var gravityEffectField = GRAVITY
