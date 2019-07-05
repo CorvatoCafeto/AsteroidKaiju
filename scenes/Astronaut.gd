@@ -27,7 +27,10 @@ func _physics_process(delta):
 	if(nextPlanet != closestPlanet && nextPlanet.is_in_gravity_field(global_position)):
 		closestPlanet = nextPlanet
 	
-	if Globals.death == false:	
+	if (Globals.escape == true):
+		self.visible = false	
+	
+	if Globals.death == false and Globals.escape != true:
 		applyMovement(delta)
 		applyGravity(delta)
 		applyJump(delta)
@@ -38,7 +41,8 @@ func _physics_process(delta):
 		velocity = Vector2(speed.x * delta, speed.y * delta)
 		velocity = velocity.rotated(playerRot)
 		
-		move_and_slide(velocity)
+		#move_and_slide(velocity)
+		move_and_slide_with_snap(velocity, Vector2(0, -1), Vector2(0, 32)) 
 		set_rotation(playerRot)
 
 func checkHit():
@@ -47,6 +51,8 @@ func checkHit():
 		Globals.hit = false
 	if Globals.astronaut_health <= 0:
 		Globals.death = true
+		$AnimationPlayer.current_animation = "Death"
+		$AnimationPlayer.play()
 		
 	
 func applyMovement(delta):

@@ -47,6 +47,8 @@ func update_fuel():
 
 func _on_Retry_pressed():
 	get_tree().change_scene("res://scenes/AnotherSpace.tscn")
+	Globals.death = false
+	Globals.astronaut_health = 4
 
 func _on_Exit_pressed():
 	get_tree().quit()
