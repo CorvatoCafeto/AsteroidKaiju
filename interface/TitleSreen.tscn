@@ -67,7 +67,6 @@ margin_right = 108.0
 margin_bottom = 96.0
 max_value = 1.0
 value = 1.0
-ticks_on_borders = false
 script = ExtResource( 4 )
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
